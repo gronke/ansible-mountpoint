@@ -1,0 +1,23 @@
+---
+
+- name: mountpoint exists
+  file: path="{{mountpoint}}" state=directory
+
+- name: fstab entry exists
+  mount: 
+    name: "{{mountpoint}}"
+    src: "UUID={{uuid}}"
+    fstype: "{{fstype}}"
+    opts: "{{opts}}"
+    state: "mounted"
+  when: uuid is defined
+
+- name: fstab entry exists
+  mount: 
+    name: "{{mountpoint}}"
+    src: "{{source}}"
+    fstype: "{{fstype}}"
+    opts: "{{opts}}"
+    state: "mounted"
+  when: source is defined
+
