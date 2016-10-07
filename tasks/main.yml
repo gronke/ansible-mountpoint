@@ -1,5 +1,12 @@
 ---
 
+- name: packages are installed
+  apt:
+    name: 9mount
+    state: latest
+    update_cache: yes
+    cache_valid_time: 3600
+
 - name: mountpoint exists
   file: path="{{mountpoint}}" state=directory
 
@@ -20,4 +27,3 @@
     opts: "{{opts}}"
     state: "mounted"
   when: source is defined
-
