@@ -27,6 +27,7 @@ Examples
   opts: ro,loop
   fstype: iso9660
   mountpoint: /media/diskimage
+```
 
 ### Mounting a 9p virtio shared directory with libvirtd
 
