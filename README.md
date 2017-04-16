@@ -47,3 +47,4 @@ This role can be used to create an fstab entry for this mountpoint
   mountpoint: /media/my_shared_directory
 ```
 
+You might need to enable `9p`, `9pnet` and `9pnet_virtio` modules during boot. This role will do this automatically on Debian/Ubuntu.
