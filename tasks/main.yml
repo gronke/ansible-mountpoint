@@ -27,3 +27,15 @@
     opts: "{{opts}}"
     state: "mounted"
   when: source is defined
+
+- name: 9p modules are loaded during boot of Debian/Ubuntu
+  lineinfile:
+    dest: /etc/initramfs-tools/modules
+    line: "{{ item }}"
+    insertafter: EOF
+  with_items:
+    - 9p
+    - 9pnet
+    - 9pnet_virtio
+  notify: update initramfs
+  when: (fstype == '9p') and ((ansible_distribution == 'Debian') or (ansible_distribution == 'Ubuntu'))

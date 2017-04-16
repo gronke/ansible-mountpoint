@@ -28,3 +28,22 @@ Examples
   fstype: iso9660
   mountpoint: /media/diskimage
 
+### Mounting a 9p virtio shared directory with libvirtd
+
+A libvirt host can share a directory with a guest domain.
+```xml
+<filesystem type='mount' accessmode='mapped'>
+  <source dir='/your/source/path'/>
+  <target dir='my_shared_directory'/>
+</filesystem>
+```
+
+This role can be used to create an fstab entry for this mountpoint
+```yaml
+- role: gronke.mountpoint
+  source: "my_shared_directory"
+  opts: "transport=virtio"
+  fstype: "9p"
+  mountpoint: /media/my_shared_directory
+```
+
